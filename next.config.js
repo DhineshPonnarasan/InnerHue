@@ -6,20 +6,13 @@ if (isGithubActions) {
   repoName = `/${repo.split('/')[1]}`;
 }
 
-const withPWA = require('next-pwa')({
-  dest: 'public',
-  register: true,
-  skipWaiting: true,
-  disable: process.env.NODE_ENV === 'development',
-})
-
 const nextConfig = {
   reactStrictMode: true,
+  output: 'standalone',
   eslint: {
     ignoreDuringBuilds: true,
   },
   images: { unoptimized: true },
-  output: 'export', 
   basePath: repoName,
   assetPrefix: repoName,
   transpilePackages: [
@@ -32,4 +25,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withPWA(nextConfig)
+module.exports = nextConfig;
